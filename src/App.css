@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #143ae6e8;
+  --secondary: #028ddd;
+  --shape: rgb(214, 214, 214);
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 370px;
+  height: 570px;
+  margin: 50px 0;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  border-radius: 26px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.container header {
+  align-self: center;
+  font-size: 37px;
+  font-weight: bolder;
+  margin: 6px 0 22px;
+}
+
+.item {
+  position: relative;
+  justify-items: center;
+}
+
+input {
+  width: 100%;
+  height: 49px;
+  margin-block: 8px;
+  padding: 8px;
+  border: 2px var(--shape) solid;
+  background: #f7f7f7;
+  border-radius: 7px;
+  outline: none;
+  font-size: 16px;
+}
+
+a:is(:link, :visited) {
+  text-align: end;
+  color: var(--secondary);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.bi-group {
+  position: absolute;
+  display: inline;
+  bottom: -47%;
+  right: 0;
+  margin-right: 7px; 
+  transform:  translate(-7px , -46px);
+}
+
+.bi-eye-fill,
+.bi-eye-slash {
+  font-size: 23px;
+  color: #a8a8a8;
+}
+
+button[type='submit'] {
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-block: 20px 10px;
+  cursor: pointer;
+}
+
+button[type='submit']:hover{
+  filter: brightness(81%);
+  transition: all ease-in .1s;
+  color: white;
+}
+
+.btn-signin{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  gap: .5rem;
+  border: 2px var(--shape) solid;
+  height: 50px;
+  width: 100%;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-block: 7px 7px;
+  cursor: pointer;
+  width: 100%;
+  background: transparent;
+}
+
+.btn-signin img{
+  width: 28px;
+  height: 28px;
+}
+
+footer {
+  margin: 10px auto 2px;
+  display: inline-flex;
+  font-weight: bold;
+}
+
+footer p  , footer a{
+  font-size: 15px !important;
+  margin-inline: 2px;
+}

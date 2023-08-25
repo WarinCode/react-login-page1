@@ -10,6 +10,7 @@
 :root {
   --primary: #143ae6e8;
   --secondary: #028ddd;
+  --purple: #4008a8;
   --shape: rgb(214, 214, 214);
 }
 
@@ -63,13 +64,18 @@ a:is(:link, :visited) {
   text-decoration: none;
 }
 
+a:hover {
+  color: var(--purple);
+  text-decoration: underline;
+}
+
 .bi-group {
   position: absolute;
   display: inline;
   bottom: -47%;
   right: 0;
-  margin-right: 7px; 
-  transform:  translate(-7px , -46px);
+  margin-right: 7px;
+  transform: translate(-7px, -46px);
 }
 
 .bi-eye-fill,
@@ -78,7 +84,7 @@ a:is(:link, :visited) {
   color: #a8a8a8;
 }
 
-button[type='submit'] {
+button[type="submit"] {
   background: var(--primary);
   color: white;
   border: none;
@@ -91,17 +97,17 @@ button[type='submit'] {
   cursor: pointer;
 }
 
-button[type='submit']:hover{
-  filter: brightness(81%);
-  transition: all ease-in .1s;
+button[type="submit"]:hover {
+  filter: brightness(81%) opacity(0.87);
+  transition: all ease-in 0.1s;
   color: white;
 }
 
-.btn-signin{
+.btn-signin {
   display: flex;
   justify-content: center;
-  align-items:center;
-  gap: .5rem;
+  align-items: center;
+  gap: 0.5rem;
   border: 2px var(--shape) solid;
   height: 50px;
   width: 100%;
@@ -114,9 +120,14 @@ button[type='submit']:hover{
   background: transparent;
 }
 
-.btn-signin img{
+.btn-signin img {
   width: 28px;
   height: 28px;
+}
+
+.btn-signin:hover {
+  transition: ease 0.04s;
+  background: #ececec;
 }
 
 footer {
@@ -125,7 +136,8 @@ footer {
   font-weight: bold;
 }
 
-footer p  , footer a{
+footer p,
+footer a {
   font-size: 15px !important;
   margin-inline: 2px;
 }

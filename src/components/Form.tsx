@@ -1,4 +1,4 @@
-import { JSX, useState, useEffect, useRef } from "react";
+import { JSX, useState, useEffect , useRef } from "react";
 import Btn from "./Btn";
 import facebook from "../assets/facebook.svg";
 import google from "../assets/google.svg";
@@ -6,22 +6,18 @@ import ios from "../assets/ios-apple.svg";
 import "../App.css";
 
 interface User {
-  email: string | null;
-  password: string | null;
-}
-
-interface JsonData {
-  "email": string | null;
-  "password": string | null;
+  email: string;
+  password: string;
 }
 
 const Form = (): JSX.Element => {
   const [eye, setEye] = useState<boolean>(false);
   const [type, setType] = useState<string>("password");
-  const [user, setUser] = useState<User>({ email: null, password: null });
-  const [data, setData] = useState<JsonData>({ email: null, password: null });
-  const email = useRef<string | null>("");
-  const password = useRef<string | null>("");
+  const [user, setUser] = useState<User>({ email: "", password: "" });
+  const [email , setEmail] = useState<string>("");
+  const [password , setPassword] = useState<string>("");
+  const pwdRef = useRef(null);
+  const emlRef = useRef(null);
 
   useEffect((): void => {
     const isOpen: boolean = eye;
@@ -34,28 +30,25 @@ const Form = (): JSX.Element => {
 
   const submitForm = (): void => {
     event?.preventDefault();
-    const e: string = email?.current?.value;
-    const p: string = password?.current?.value;
-    if (e === "" || p === "") {
+    if (email === "" || password === "") {
       alert("เกิดข้อผิดพลาดขึ้นโปรดใส่รหัสผ่านและอีเมลก่อน login ใช้งาน");
-    } else if (p.length < password?.current?.minLength) {
+    } else if (pwdRef?.current?.value?.length < pwdRef.current?.minLength) {
       alert(
         "รหัสผ่านของคุณนั้นต้องมีความยาวอย่างน้อย 8 คำถึงจะใช้เป็นรหัสผ่านได้"
       );
     } else {
       try {
         setUser({
-          email: e,
-          password: p,
+          email: email,
+          password: password,
         });
-        setData(JSON.stringify({ ...user }));
       } catch (err) {
         console.error(err);
       } finally {
-        console.log(data);
+        console.log(user);
         alert("บันทึกข้อมูลผู้ใช้งานเรียบร้อย!");
-        email.current.value = "";
-        password.current.value = "";
+        emlRef.current.value = "";
+        pwdRef.current.value = "";
       }
     }
   };
@@ -67,8 +60,9 @@ const Form = (): JSX.Element => {
           type="email"
           id="email"
           placeholder="Enter your email"
-          ref={email}
+          onChange={(e:Event):void => { setEmail(e?.target?.value) }}
           required
+          ref={emlRef}
         />
       </div>
       <div className="item">
@@ -76,10 +70,11 @@ const Form = (): JSX.Element => {
           type={type}
           id="password"
           placeholder="Enter your password"
-          ref={password}
+          onChange={(e:Event):void => { setPassword(e?.target?.value) }}
           minLength={8}
           maxLength={30}
           required
+          ref={pwdRef}
         />
         <span className="bi-group" onClick={handleClick}>
           {eye ? (

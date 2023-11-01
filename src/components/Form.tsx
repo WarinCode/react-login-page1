@@ -1,23 +1,13 @@
-import { JSX, useState, useEffect , useRef } from "react";
+import { JSX, useState, useEffect } from "react";
 import Btn from "./Btn";
 import facebook from "../assets/facebook.svg";
 import google from "../assets/google.svg";
 import ios from "../assets/ios-apple.svg";
 import "../App.css";
 
-interface User {
-  email: string;
-  password: string;
-}
-
 const Form = (): JSX.Element => {
   const [eye, setEye] = useState<boolean>(false);
   const [type, setType] = useState<string>("password");
-  const [user, setUser] = useState<User>({ email: "", password: "" });
-  const [email , setEmail] = useState<string>("");
-  const [password , setPassword] = useState<string>("");
-  const pwdRef = useRef(null);
-  const emlRef = useRef(null);
 
   useEffect((): void => {
     const isOpen: boolean = eye;
@@ -28,30 +18,6 @@ const Form = (): JSX.Element => {
     setEye((b: boolean): boolean => !b);
   };
 
-  const submitForm = (): void => {
-    event?.preventDefault();
-    if (email === "" || password === "") {
-      alert("เกิดข้อผิดพลาดขึ้นโปรดใส่รหัสผ่านและอีเมลก่อน login ใช้งาน");
-    } else if (pwdRef?.current?.value?.length < pwdRef.current?.minLength) {
-      alert(
-        "รหัสผ่านของคุณนั้นต้องมีความยาวอย่างน้อย 8 คำถึงจะใช้เป็นรหัสผ่านได้"
-      );
-    } else {
-      try {
-        setUser({
-          email: email,
-          password: password,
-        });
-      } catch (err) {
-        console.error(err);
-      } finally {
-        console.log(user);
-        alert("บันทึกข้อมูลผู้ใช้งานเรียบร้อย!");
-        emlRef.current.value = "";
-        pwdRef.current.value = "";
-      }
-    }
-  };
   return (
     <form className="container">
       <header>Let's sign you in</header>
@@ -60,9 +26,7 @@ const Form = (): JSX.Element => {
           type="email"
           id="email"
           placeholder="Enter your email"
-          onChange={(e:Event):void => { setEmail(e?.target?.value) }}
           required
-          ref={emlRef}
         />
       </div>
       <div className="item">
@@ -70,11 +34,9 @@ const Form = (): JSX.Element => {
           type={type}
           id="password"
           placeholder="Enter your password"
-          onChange={(e:Event):void => { setPassword(e?.target?.value) }}
           minLength={8}
           maxLength={30}
           required
-          ref={pwdRef}
         />
         <span className="bi-group" onClick={handleClick}>
           {eye ? (
@@ -92,7 +54,7 @@ const Form = (): JSX.Element => {
       >
         Forgot password?
       </a>
-      <button className="btn-login" type="submit" onClick={submitForm}>
+      <button className="btn-login" type="submit">
         Login
       </button>
       <Btn
